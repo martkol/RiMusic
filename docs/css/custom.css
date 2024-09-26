@@ -6,13 +6,13 @@
   border-radius: 50%;
   border-right-color: #4ec07c;
   animation: l15 1s infinite linear;  
-}
+}/*
 .d-0{
   display:none !important
-}/*
+}*/
 .o-0{
   opacity:0 !important
-}*/
+}
 .loader::before,
 .loader::after {
   content: "";
@@ -325,10 +325,10 @@ html.no-js {
     background-position: top right, bottom left
   }
   .is-revealing {
-    opacity: 1 !important;
+    opacity: 1 ;
     transform: translateY(0%) !important;
   }
-  d-0{
+  .d-0{
     display:unset;
   }
 }
