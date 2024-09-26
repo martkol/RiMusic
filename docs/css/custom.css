@@ -9,10 +9,10 @@
 }
 .d-0{
   display:none !important
-}
+}/*
 .o-0{
   opacity:0 !important
-}
+}*/
 .loader::before,
 .loader::after {
   content: "";
@@ -327,5 +327,8 @@ html.no-js {
   .is-revealing {
     opacity: 1 !important;
     transform: translateY(0%) !important;
+  }
+  d-0{
+    display:unset;
   }
 }
