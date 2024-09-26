@@ -1,18 +1,26 @@
-var revealObjects
-async function reveal() {
-    revealObjects = document.getElementsByClassName("is-revealing")
-    for (let a = 0; a < revealObjects.length; a++) {
-        boundings = revealObjects[a].parentElement.getBoundingClientRect();
-        if ((boundings.height - boundings.top < -250) && (boundings.top - window.innerHeight) > (0 - (boundings.height) * 0.35)) {
-            revealObjects[a].classList.remove("visible")
-            revealObjects[a].classList.add("invisible")
-        }
-        if ((boundings.top - window.innerHeight) < (0 - (boundings.height) * 0.35)) {
-            revealObjects[a].classList.add("visible")
-            revealObjects[a].classList.remove("invisible")
+z=0
+init = false
+function reveal() {
+    w = window.innerHeight
+    rO = document.getElementsByClassName("is-revealing")
+    for (let a = Math.max(z-1,0); a < Math.min(z+1,rO.length); a++) {
+        b = rO[a].parentElement.getBoundingClientRect();
+        if (b.height > 1){
+            if (b.top > w && !rO[a].classList.contains("o-0")){
+                rO[a].classList.add("o-0") 
+                z = z - 1
+            } 
+            if (b.top < (w - (b.height * 0.4)) && rO[a].classList.contains("o-0")){
+                rO[a].classList.remove("o-0")
+                z = z + 1
+            }
         }
     }
 }
 window.onscroll = function (e) {
     reveal()
 }
+window.onresize = function (e) {
+    reveal()
+}
+reveal()
