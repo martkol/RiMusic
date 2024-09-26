@@ -1,15 +1,3 @@
-.loadingScreen {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  background-color: #0b0d19;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 1;
-  transition: ease 0.4s opacity;
-}
 .loader {
   width: 100px;
   aspect-ratio: 1;
@@ -17,7 +5,13 @@
   border: 4px solid #0000;
   border-radius: 50%;
   border-right-color: #4ec07c;
-  animation: l15 1s infinite linear;
+  animation: l15 1s infinite linear;  
+}
+.d-0{
+  display:none !important
+}
+.o-0{
+  opacity:0 !important
 }
 .loader::before,
 .loader::after {
@@ -37,12 +31,17 @@
     transform: rotate(1turn);
   }
 }
+h2.hero-paragraph {
+  color: #abbad0 !important;
+  margin-top: 0;
+  margin-bottom: 24px;
+  font-family: "Heebo", sans-serif;
+  font-size: 1rem;
+  line-height: 30px;
+  font-weight: normal;
+ }
 ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
   position: relative;
-  bottom:0
 }
 .footer-links > li > a {
   white-space: nowrap;
@@ -59,19 +58,21 @@ ul {
 }
 #langSelect { 
   cursor: pointer;
-  position: relative;
-  left: 0px;
-  margin: 0;
-  padding-left: 25px; 
-  width: fit-content;
-  z-index:5000;
   margin-right: 8px;
-  background-image:url(../images/lang.svg) !important;
-  background-position: 0px 0px;
-  background-repeat: no-repeat;
-  background-size: auto 21px;
+  z-index:5000;
   text-wrap: nowrap;
-  color: #abbad0
+  color: #abbad0;
+  &::before{
+    vertical-align:text-top;
+    content: '';
+    display: inline-block;
+    background-image:url(../images/lang.svg) !important;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: auto 21px;
+    width:25px;
+    height: 100%;
+  }
 }
 #langOption {
   display: none;
@@ -83,13 +84,14 @@ ul {
   border-radius: 5px;
   overflow-y: scroll;
   overflow-x: hidden;
-  background-color:#fff;
+  background-color:#eee;
   color: #161e29;
   border: 1px solid rgba(80,80,80,1);
   padding: 0 8px 0 8px;
+  margin: 0 8px 0 8px;
   /* Styling for Chromebased Browser */
-    color-scheme: dark;
-    scrollbar-color: rgba(255, 255, 255, 0.3) rgba(250, 250, 250, 0.1);
+    color-scheme: light;
+    scrollbar-color: rgba(0, 0, 0, 0.3) rgba(5, 5, 5, 0.1);
     scrollbar-width: thin;
     scrollbar-gutter: stable;
   /* --- */
@@ -121,8 +123,7 @@ body.visible #langBorder {
     opacity: 1;
     transform: translateY(0%);
     transition: all 0.4s ease-in-out, opacity 0.2s;
-    &.invisible{
-      opacity: 0; 
+    &.o-0{
       &.up{
         transform: translateY(22%);
       }
@@ -150,13 +151,9 @@ body.visible #langBorder {
   .footer-links {
     text-align: center;
   }
-  #langSelect {
-    margin-left: auto;
-    margin-right: auto;
-  }
   #langBorder {
     position: fixed;
-    display: none;
+    display:none;
     align-items: center;
     justify-content: center;
     top: 0;
@@ -220,10 +217,12 @@ body.visible #langBorder {
   --color: #abbad0;
   --moon: 0.4;
   --sun: 0.95;
-}
-.focustoggle:hover {
-  --color: #4fc17c !important;
   cursor: pointer;
+}
+html:not(.touch){
+#toggledark:hover {
+  --color: #4fc17c !important;
+}
 }
 body,
 .body-wrap {
@@ -244,6 +243,10 @@ body.dark {
     div:hover {
       background-color: rgba(0,0,0,0.9)
     }
+    /* Styling for Chromebased Browser */
+      color-scheme: dark;
+      scrollbar-color: rgba(255, 255, 255, 0.3) rgba(250, 250, 250, 0.1);
+    /* --- */
   }
   .hero-paragraph,
   .site-footer a,
@@ -298,18 +301,10 @@ a > img:hover {
     }
   }
 }
-@media (max-width: 740px) {
-  @media (min-width: 641px) {
-    #langSelect {
-      margin-left: auto;
-      margin-right:0;
-    } 
-  }
-}
 .feature-extended-image img,.feature-extended-image svg{
   overflow:hidden
 }
-body.no-js {
+html.no-js {
   .mockup-bg{
     opacity:1 !important
   }
@@ -321,12 +316,16 @@ body.no-js {
     opacity: 0 !important;
     display: none !important;
   }
-  .device-mockup, header, section, footer, canvas{
+  h1, h2, h3, .device-mockup, header, section, footer, canvas{
     opacity:1 !important
   }
   .hero-particles-container{
     background-image:url("../images/hero-bg-top.svg"),url("../images/hero-bg-bottom.svg");
     background-repeat:no-repeat;
     background-position: top right, bottom left
+  }
+  .is-revealing {
+    opacity: 1 !important;
+    transform: translateY(0%) !important;
   }
 }
